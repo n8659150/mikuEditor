@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import mainArea from './components/mainArea'
+import mainArea from "./components/mainArea";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     mainArea
   }
-}
+};
 </script>
 
 <style>

@@ -1,0 +1,112 @@
+/**
+    Name:Miku theme
+    From Jack Li
+ */
+
+.cm-s-miku.CodeMirror {
+    background: url('../assets/miku_10.jpg') !important;
+    color: #575757;
+    font-weight: bold;
+}
+
+.cm-s-miku .CodeMirror-activeline-background {
+    background: #FFBFCB !important;
+}
+
+.cm-s-miku .CodeMirror-selected {
+    background: #FFBFCB !important;
+    ;
+}
+
+
+/* .cm-s-miku span.cm-number { color: #0000FF !important; } */
+
+.cm-s-miku span.cm-keyword {
+    line-height: 1em;
+    color: #000080 !important;
+}
+
+
+/* .cm-s-miku .cm-property {
+    color: #0000FF !important;
+    font-weight:bold !important;
+} */
+
+.cm-s-miku .cm-number {
+    color: #E09200 !important;
+    font-weight: bold !important;
+}
+
+.cm-s-miku span.cm-def {
+    color: #2AA36B;
+}
+
+.cm-s-miku span.cm-variable {
+    color: #2AA36B;
+}
+
+.cm-s-miku span.cm-variable-2 {
+    color: #2AA36B;
+}
+
+.cm-s-miku span.cm-variable-3,
+.cm-s-miku span.cm-type {
+    color: #2AA36B;
+}
+
+.cm-s-miku span.cm-property {
+    color: #E09200;
+}
+
+.cm-s-miku span.cm-operator {
+    color: #575757;
+}
+
+.cm-s-miku span.cm-comment {
+    color: #808080;
+}
+
+.cm-s-miku span.cm-string {
+    color: #30AB71;
+}
+
+.cm-s-miku span.cm-string-2 {
+    color: #30AB71;
+}
+
+.cm-s-miku span.cm-qualifier {
+    color: #575757
+}
+
+.cm-s-miku span.cm-error {
+    color: #D80000;
+}
+
+.cm-s-miku span.cm-attribute {
+    color: #000080;
+}
+
+.cm-s-miku span.cm-tag {
+    color: #000080
+}
+
+.cm-s-miku span.cm-link {
+    color: #000080
+}
+
+.cm-s-miku span.cm-builtin {
+    color: #000080;
+}
+
+.cm-s-miku span.cm-bracket {
+    color: #E09200;
+}
+
+.cm-s-miku {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.cm-s-miku .CodeMirror-matchingbracket {
+    outline: 1px solid grey;
+    color: black !important;
+}
