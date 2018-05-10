@@ -1,25 +1,25 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <jsOnline/> 
+    <mainArea/> 
     
   </div>
 </template>
 
 <script>
-import jsOnline from './components/jsOnline'
+import mainArea from './components/mainArea'
 
 export default {
   name: 'App',
   components: {
-    jsOnline
+    mainArea
   }
 }
 </script>
 
 <style>
-textarea{
+/* textarea{
   width: 200px;
   height: 100px;
-}
+} */
 </style>
