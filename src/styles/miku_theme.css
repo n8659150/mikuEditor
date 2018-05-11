@@ -3,6 +3,11 @@
     From Jack Li
  */
 
+.vue-codemirror,
+.CodeMirror {
+    height: 100% !important;
+}
+
 .cm-s-miku.CodeMirror {
     background: url('../assets/miku_10.jpg') !important;
     color: #575757;

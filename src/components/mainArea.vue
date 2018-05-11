@@ -31,15 +31,15 @@
       <codemirror :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
     </div>
      -->
-    <div class="codingArea">
+    <div class="codingArea" style="position:relative;">
       <codemirror :options='settings.JS.cmOptions' v-model="settings.JS.jsInput"></codemirror>
+      <button style="position:absolute; bottom:20px;right:20px;" @click="renderIt()">Run</button>
     </div>
-  
   <!-- Sandboxing -->
   <div id="output">
     <iframe class="outputArea" allowTransparency="true"></iframe>
   </div>
-  <button @click="renderIt()">Run</button>
+  <!-- <button @click="renderIt()">Run</button> -->
   </div>
 </template>
 
@@ -94,6 +94,7 @@ export default {
           line: true,
           mode: 'javascript',
           lineWrapping: true,
+          // viewportMargin: Infinity,
           theme: 'miku'
           }
         }
@@ -164,8 +165,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main {
+  flex:1;
   display: flex;
   flex-direction: row;
+  margin:14px 0 0 0;
 }
 .menu {
   width: 240px;
@@ -186,8 +189,7 @@ export default {
 } */
 iframe {
   border: 0;
-  border-left: 1px solid #e2ecf4 !important;
-
+  border-left: 2px solid #e2ecf4 !important;
   /* background:rgba(236, 242, 252, 0.2) */
 }
 /* h1, h2 {
