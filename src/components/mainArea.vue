@@ -2,10 +2,11 @@
 <div class="main"> 
   <!-- menu -->
   <div class="menu">
-    <at-menu mode="vertical" active-name="1">
-    <at-menu-item name="1">HTML</at-menu-item>
-    <at-menu-item name="4">CSS</at-menu-item>
-    <at-menu-item name="5">JavaScript</at-menu-item>
+    <at-menu mode="vertical"  :active-name="activeName" width="150">
+      
+      <at-menu-item v-for="(menuItem,index) in menuItems" :key="index" :name="menuItem" @click.native="activeMenu(index)">{{menuItem}}</at-menu-item>
+      <!-- <at-menu-item name="CSS">CSS</at-menu-item>
+      <at-menu-item name="JavaScript">JavaScript</at-menu-item> -->
     </at-menu>
   </div>
 
@@ -32,7 +33,9 @@
     </div>
      -->
     <div class="codingArea" style="position:relative;">
-      <codemirror :options='settings.JS.cmOptions' v-model="settings.JS.jsInput"></codemirror>
+      <codemirror v-if="activeName == 'HTML'" :options='settings.HTML.cmOptions' v-model="settings.HTML.htmlInput"></codemirror>
+      <codemirror v-if="activeName == 'CSS'" :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
+      <codemirror v-if="activeName == 'JavaScript'" :options='settings.JS.cmOptions' v-model="settings.JS.jsInput"></codemirror>
       <button style="position:absolute; bottom:20px;right:20px;" @click="renderIt()">Run</button>
     </div>
   <!-- Sandboxing -->
@@ -49,6 +52,8 @@ import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/mode/css/css.js";
 import "codemirror/mode/javascript/javascript.js";
 import "../styles/miku_theme.css";
+import { Menu as AtMenu } from 'at-ui';
+import { MenuItem as AtMenuItem } from 'at-ui';
 //  require('codemirror/addon/fold/foldcode.js')
 //  require('codemirror/addon/fold/foldgutter.js')
 //  require('codemirror/addon/fold/brace-fold.js')
@@ -60,9 +65,19 @@ export default {
   name: 'mainArea',
   data () {
     return {
+      activeName:'HTML',
+      menuItems:['HTML','CSS','JavaScript'],
       settings:{
         HTML:{
-          htmlInput:'<a>JS Online</a>',
+          htmlInput:"<!doctype html>\n" +
+            "<html>\n\t" +
+            "<head>\n\t\t" +
+            "<meta charset=\"utf-8\">\n\t\t" +
+            "<title>JS_Online</title>\n\t" +
+            "</head>\n\t" +
+            "<body>\n\t\n\t" +
+            "</body>\n" +
+            "</html>",
           cmOptions: {
             tabSize: 4,
             styleActiveLine: true,
@@ -86,7 +101,7 @@ export default {
           }
         },
         JS:{
-          jsInput: 'const a = 10;',
+          jsInput: 'let a = 10;',
           cmOptions: {
           tabSize: 4,
           styleActiveLine: true,
@@ -102,22 +117,25 @@ export default {
       
     }
   },
-  components:{codemirror},
+  components:{codemirror,AtMenu,AtMenuItem},
   methods: {
+   activeMenu:function(index){
+     this.activeName = this.menuItems[index];
+   }, 
    renderIt:function(that){
       (function(that) {
         
         // Base template
-        var base_tpl =
-            "<!doctype html>\n" +
-            "<html>\n\t" +
-            "<head>\n\t\t" +
-            "<meta charset=\"utf-8\">\n\t\t" +
-            "<title>Test</title>\n\n\t\t\n\t" +
-            "</head>\n\t" +
-            "<body>\n\t\n\t" +
-            "</body>\n" +
-            "</html>";
+        // var base_tpl =
+        //     "<!doctype html>\n" +
+        //     "<html>\n\t" +
+        //     "<head>\n\t\t" +
+        //     "<meta charset=\"utf-8\">\n\t\t" +
+        //     "<title>JS_Online</title>\n\n\t\t\n\t" +
+        //     "</head>\n\t" +
+        //     "<body>\n\t\n\t" +
+        //     "</body>\n" +
+        //     "</html>";
         
         var sourceCode = function() {
           // var html = document.querySelector('#html textarea').value,
@@ -132,25 +150,23 @@ export default {
           console.log(css);
           console.log(js);
           // HTML
-          src = base_tpl.replace('</body>', html + '</body>');
-          
+          // src = base_tpl.replace('</body>', html + '</body>');
+          src = html;
           // CSS
           css = '<style>' + css + '</style>';
-          src = src.replace('</head>', css + '</head>');
+          src = src.replace('</head>', '</head>' + css);
           
           // Javascript
           js = '<script>' + js + '<\/script>';
-          src = src.replace('</body>', js + '</body>');
+          src = src.replace('</body>', '</body>' + js);
           console.log(src);
           return src;
         };
         
         var render = function() {
           var source = sourceCode();
-          
           var iframe = document.querySelector('#output iframe'),
               iframe_doc = iframe.contentDocument;
-          
           iframe_doc.open();
           iframe_doc.write(source);
           iframe_doc.close();
@@ -171,8 +187,36 @@ export default {
   margin:14px 0 0 0;
 }
 .menu {
-  width: 240px;
+  border-right:1px solid #e2ecf4;
 }
+
+.at-menu--vertical .at-menu__item-link::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #39C5BB !important;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-box-shadow: 1px 0 12px 0 #39C5BB !important;
+          box-shadow: 1px 0 12px 0 #39C5BB !important;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  opacity: 0;
+}
+
+.at-menu--vertical .at-menu__item-link:hover {
+  color: #6190E8;
+}
+
+.at-menu--vertical .at-menu__item-link.router-link-active {
+  color: #6190E8;
+  background-color: rgba(236, 242, 252, 0.2);
+}
+
 .codingArea {
   width: 0;
   flex: 1;

@@ -1,6 +1,6 @@
 <template>
   <div class="footerWrap">
-    <footer>Created by Jack Li using Vue 2.0 with love</footer> 
+    <footer>{{footerContent}}</footer> 
   </div>
 </template>
 
@@ -8,7 +8,9 @@
 export default {
   name: "footerArea",
   data() {
-    return {};
+    return {
+      footerContent:'Created by Jack Li using Vue 2.0 with love'
+    };
   }
 };
 </script>
@@ -17,7 +19,7 @@ export default {
 <style scoped>
 .footerWrap {
   background:rgba(29,29,31,0.07);
-  padding-top:8px;
+  padding-top:5px;
 }
   footer {
     /* border:1px solid red; */
