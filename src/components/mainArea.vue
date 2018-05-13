@@ -75,8 +75,9 @@ export default {
             "<meta charset=\"utf-8\">\n\t\t" +
             "<title>JS_Online</title>\n\t" +
             "</head>\n\t" +
-            "<body>\n\t\n\t" +
-            "</body>\n" +
+            "<body>\n\t" +
+            "\t<div>miku</div>\n\t" +
+            "</body>\n" + 
             "</html>",
           cmOptions: {
             tabSize: 4,
@@ -89,7 +90,7 @@ export default {
           }
         },
         CSS:{
-          cssInput: 'css input',
+          cssInput: 'div { width:300px; height:316px; background:url("../static/miku_100.jpg")}',
           cmOptions: {
           tabSize: 4,
           styleActiveLine: true,
@@ -122,57 +123,43 @@ export default {
    activeMenu:function(index){
      this.activeName = this.menuItems[index];
    }, 
-   renderIt:function(that){
-      (function(that) {
-        
-        // Base template
-        // var base_tpl =
-        //     "<!doctype html>\n" +
-        //     "<html>\n\t" +
-        //     "<head>\n\t\t" +
-        //     "<meta charset=\"utf-8\">\n\t\t" +
-        //     "<title>JS_Online</title>\n\n\t\t\n\t" +
-        //     "</head>\n\t" +
-        //     "<body>\n\t\n\t" +
-        //     "</body>\n" +
-        //     "</html>";
-        
-        var sourceCode = function() {
-          // var html = document.querySelector('#html textarea').value,
-          //     css = document.querySelector('#css textarea').value,
-          //     js = document.querySelector('#js textarea').value,
-          //     src = '';
-          var html = that.settings.HTML.htmlInput,
-              css = that.settings.CSS.cssInput,
-              js = that.settings.JS.jsInput,
+   sourceCode:function(){
+      // var base_tpl = "<!doctype html>\n" +
+      //       "<html>\n\t" +
+      //       "<head>\n\t\t" +
+      //       "<meta charset=\"utf-8\">\n\t\t" +
+      //       "<title>JS_Online</title>\n\t" +
+      //       "</head>\n\t" +
+      //       "<body>\n\t\n\t" +
+      //       "</body>\n" + 
+      //       "</html>";
+      var html = this.settings.HTML.htmlInput,
+              css = this.settings.CSS.cssInput,
+              js = this.settings.JS.jsInput,
               src = '';
           console.log(html);
           console.log(css);
           console.log(js);
           // HTML
-          // src = base_tpl.replace('</body>', html + '</body>');
           src = html;
+          // src = html;
           // CSS
-          css = '<style>' + css + '</style>';
-          src = src.replace('</head>', '</head>' + css);
+          css = '<style>' + css + '</style> \n';
+          src = src.replace('</head>', css + '</head>' );
           
           // Javascript
           js = '<script>' + js + '<\/script>';
-          src = src.replace('</body>', '</body>' + js);
+          src = src.replace('</body>', '</body> \n\t' + js);
           console.log(src);
           return src;
-        };
-        
-        var render = function() {
-          var source = sourceCode();
-          var iframe = document.querySelector('#output iframe'),
+   },
+   renderIt:function(){
+     let source = this.sourceCode();
+     let iframe = document.querySelector('#output iframe'),
               iframe_doc = iframe.contentDocument;
           iframe_doc.open();
           iframe_doc.write(source);
           iframe_doc.close();
-        };
-        render();
-      }(this));
    }
   }
 }
