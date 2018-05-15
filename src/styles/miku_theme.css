@@ -10,17 +10,18 @@
 
 .cm-s-miku.CodeMirror {
     background: url('../assets/miku_10.jpg') !important;
-    color: #575757;
+    color: rgba(63, 83, 110, 0.884);
     font-weight: bold;
 }
 
 .cm-s-miku .CodeMirror-activeline-background {
-    background: #FFBFCB !important;
+    background: rgb(255, 191, 203) !important;
+    /* background: #3390FF !important; */
 }
 
 .cm-s-miku .CodeMirror-selected {
-    background: #FFBFCB !important;
-    ;
+    background: rgb(255, 191, 203) !important;
+    /* background: #3390FF !important; */
 }
 
 
@@ -28,83 +29,83 @@
 
 .cm-s-miku span.cm-keyword {
     line-height: 1em;
-    color: #000080 !important;
+    /* color: #000080 !important; */
+    color: rgba(233, 118, 214, 0.959);
 }
 
-
-/* .cm-s-miku .cm-property {
-    color: #0000FF !important;
-    font-weight:bold !important;
-} */
+.cm-s-miku .cm-property {
+    color: #2AA36B !important;
+    font-weight: bold !important;
+}
 
 .cm-s-miku .cm-number {
-    color: #E09200 !important;
+    color: #215799d3 !important;
     font-weight: bold !important;
 }
 
 .cm-s-miku span.cm-def {
-    color: #2AA36B;
+    color: rgba(42, 163, 107, 0.911);
 }
 
 .cm-s-miku span.cm-variable {
-    color: #2AA36B;
+    color: rgba(42, 163, 107, 0.911);
 }
 
 .cm-s-miku span.cm-variable-2 {
-    color: #2AA36B;
+    color: rgba(42, 163, 107, 0.911);
 }
 
 .cm-s-miku span.cm-variable-3,
 .cm-s-miku span.cm-type {
-    color: #2AA36B;
+    color: rgba(42, 163, 107, 0.911);
 }
 
 .cm-s-miku span.cm-property {
-    color: #E09200;
+    color: rgba(42, 163, 107, 0.911);
 }
 
 .cm-s-miku span.cm-operator {
-    color: #575757;
+    color: #994500cc;
 }
 
 .cm-s-miku span.cm-comment {
-    color: #808080;
+    color: rgba(74, 157, 74, 0.966);
 }
 
 .cm-s-miku span.cm-string {
-    color: #30AB71;
+    color: rgba(218, 69, 67, 0.932);
 }
 
 .cm-s-miku span.cm-string-2 {
-    color: #30AB71;
+    color: rgba(218, 69, 67, 0.932);
 }
 
 .cm-s-miku span.cm-qualifier {
-    color: #575757
+    color: rgba(42, 163, 107, 0.884);
 }
 
 .cm-s-miku span.cm-error {
-    color: #D80000;
+    color: rgba(216, 0, 0, 0.932);
 }
 
 .cm-s-miku span.cm-attribute {
-    color: #000080;
+    color: #215799d3;
 }
 
 .cm-s-miku span.cm-tag {
-    color: #000080
+    color: rgba(42, 163, 107, 0.884);
 }
 
 .cm-s-miku span.cm-link {
-    color: #000080
+    color: #215799d3;
 }
 
 .cm-s-miku span.cm-builtin {
-    color: #000080;
+    color: #215799d3;
 }
 
 .cm-s-miku span.cm-bracket {
-    color: #E09200;
+    color: rgba(63, 83, 110, 0.733);
 }
 
 .cm-s-miku {

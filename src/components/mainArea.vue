@@ -1,5 +1,6 @@
 <template>
 <div class="main"> 
+  <transition appear appear-active-class="animated bounceInDown animation-delay-700">
   <!-- menu -->
   <div class="menu">
     <at-menu mode="vertical"  :active-name="activeName" width="150">
@@ -9,7 +10,7 @@
       <at-menu-item name="JavaScript">JavaScript</at-menu-item> -->
     </at-menu>
   </div>
-
+  </transition>
     <!-- <div id="html">
       <h3>HTML</h3>
       <textarea name="html"></textarea>
@@ -32,17 +33,23 @@
       <codemirror :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
     </div>
      -->
-    <div class="codingArea" style="position:relative;">
-      <codemirror v-if="activeName == 'HTML'" :options='settings.HTML.cmOptions' v-model="settings.HTML.htmlInput"></codemirror>
-      <codemirror v-if="activeName == 'CSS'" :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
-      <codemirror v-if="activeName == 'JavaScript'" :options='settings.JS.cmOptions' v-model="settings.JS.jsInput"></codemirror>
-      <button style="position:absolute; bottom:20px;right:20px;" @click="renderIt()">Run</button>
-    </div>
+    <transition appear appear-active-class="animated bounceInDown animation-delay-1600">
+      <div class="codingArea" style="position:relative;">
+        <codemirror v-if="activeName == 'HTML'" :options='settings.HTML.cmOptions' v-model="settings.HTML.htmlInput"></codemirror>
+        <codemirror v-if="activeName == 'CSS'" :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
+        <codemirror v-if="activeName == 'JavaScript'" :options='settings.JS.cmOptions' v-model="settings.JS.jsInput"></codemirror>
+        <button style="position:absolute; bottom:20px;right:20px;" @click="renderIt()">Run</button>
+      </div>
+    </transition>
   <!-- Sandboxing -->
-  <div id="output">
-    <iframe class="outputArea" allowTransparency="true"></iframe>
-  </div>
-  <!-- <button @click="renderIt()">Run</button> -->
+  
+    <div id="output">
+      <!-- <transition appear appear-active-class="animated bounceInDown animation-delay-1700" > -->
+        <iframe class="outputArea" allowTransparency="true"></iframe>
+      <!-- </transition> -->
+    </div>
+    
+    <!-- <button @click="renderIt()">Run</button> -->
   </div>
 </template>
 
@@ -73,9 +80,10 @@ export default {
             "<html>\n\t" +
             "<head>\n\t\t" +
             "<meta charset=\"utf-8\">\n\t\t" +
+            "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css\">\n\t" +
             "<title>JS_Online</title>\n\t" +
             "</head>\n\t" +
-            "<body>\n\t" +
+            "<body class=\"animated bounceInDown\">\n\t" +
             "\t<div>miku</div>\n\t" +
             "</body>\n" + 
             "</html>",
@@ -114,8 +122,7 @@ export default {
           theme: 'miku'
           }
         }
-      },
-      
+      }
     }
   },
   components:{codemirror,AtMenu,AtMenuItem},
@@ -154,13 +161,13 @@ export default {
           return src;
    },
    renderIt:function(){
-     let source = this.sourceCode();
-     let iframe = document.querySelector('#output iframe'),
-              iframe_doc = iframe.contentDocument;
-          iframe_doc.open();
-          iframe_doc.write(source);
-          iframe_doc.close();
-   }
+       let source = this.sourceCode();
+       let iframe = document.querySelector('#output iframe'),
+       iframe_doc = iframe.contentDocument;
+       iframe_doc.open();
+       iframe_doc.write(source);
+       iframe_doc.close();
+     }
   }
 }
 </script>
@@ -223,6 +230,21 @@ iframe {
   border-left: 2px solid #e2ecf4 !important;
   /* background:rgba(236, 242, 252, 0.2) */
 }
+
+.animation-delay-700 {
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.animation-delay-1600 {
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+
+.animation-delay-1700 {
+  -webkit-animation-delay: 1.7s;
+  animation-delay: 1.7s;
+}
 /* h1, h2 {
   font-weight: normal;
 }
@@ -237,4 +259,6 @@ li {
 a {
   color: #42b983;
 } */
+/* fade 效果*/
+
 </style>

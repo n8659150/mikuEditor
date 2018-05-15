@@ -6,6 +6,7 @@ import 'at-ui-style'
 import App from './App'
 import VueCodemirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
+import 'animate.css'
 // Vue.use(AtComponents)
 Vue.use(VueCodemirror)
 Vue.config.productionTip = false
