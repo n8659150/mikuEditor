@@ -1,6 +1,6 @@
-# jsonline
+# MikuEditor
 
-> A Vue.js project
+> An online JS editor with miku themes 
 
 ## Build Setup
 
