@@ -1,11 +1,9 @@
 <template>
   <transition appear  appear-active-class="animated bounceInDown">
   <div>
-    
       <header>
         <img src="../assets/miku_logo.png" alt="miku_logo">
       </header>
-    
   </div>
   </transition>
 </template>

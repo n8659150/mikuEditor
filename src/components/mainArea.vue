@@ -70,13 +70,7 @@ import "codemirror/addon/fold/xml-fold.js";
 import "../styles/miku_theme.css";
 import { Menu as AtMenu } from "at-ui";
 import { MenuItem as AtMenuItem } from "at-ui";
-//  require('codemirror/addon/fold/foldcode.js')
-//  require('codemirror/addon/fold/foldgutter.js')
-//  require('codemirror/addon/fold/brace-fold.js')
-//  require('codemirror/addon/fold/xml-fold.js')
-//  require('codemirror/addon/fold/indent-fold.js')
-//  require('codemirror/addon/fold/markdown-fold.js')
-//  require('codemirror/addon/fold/comment-fold.js')
+
 export default {
   name: "mainArea",
   data() {
@@ -90,7 +84,7 @@ export default {
             "<html>\n\t" +
             "<head>\n\t\t" +
             '<meta charset="utf-8">\n\t\t' +
-            '<link rel="stylesheet"\n\t\t'  +
+            '<link rel="stylesheet"\n\t\t' +
             'href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">\n\t' +
             "<title>JS_Online</title>\n\t" +
             "</head>\n\t" +
@@ -169,25 +163,13 @@ export default {
       this.activeName = this.menuItems[index];
     },
     sourceCode: function() {
-      // var base_tpl = "<!doctype html>\n" +
-      //       "<html>\n\t" +
-      //       "<head>\n\t\t" +
-      //       "<meta charset=\"utf-8\">\n\t\t" +
-      //       "<title>JS_Online</title>\n\t" +
-      //       "</head>\n\t" +
-      //       "<body>\n\t\n\t" +
-      //       "</body>\n" +
-      //       "</html>";
-      var html = this.settings.HTML.htmlInput,
-        css = this.settings.CSS.cssInput,
-        js = this.settings.JS.jsInput,
-        src = "";
-      console.log(html);
-      console.log(css);
-      console.log(js);
+      let html = this.settings.HTML.htmlInput,
+          css = this.settings.CSS.cssInput,
+          js = this.settings.JS.jsInput,
+          src = "";
       // HTML
       src = html;
-      // src = html;
+
       // CSS
       css = "<style>" + css + "</style> \n";
       src = src.replace("</head>", css + "</head>");
@@ -210,7 +192,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main {
   flex: 1;
@@ -260,13 +241,10 @@ export default {
 .outputArea {
   flex: 1;
 }
-/* .cm-s-miku {
-  background:url('../assets/miku.jpg') !important;
-} */
+
 iframe {
   border: 0;
   border-left: 2px solid #e2ecf4 !important;
-  /* background:rgba(236, 242, 252, 0.2) */
 }
 
 .animation-delay-700 {
@@ -283,19 +261,4 @@ iframe {
   -webkit-animation-delay: 1.7s;
   animation-delay: 1.7s;
 }
-/* h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-} */
-/* fade 效果*/
 </style>
