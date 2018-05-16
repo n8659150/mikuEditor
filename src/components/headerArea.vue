@@ -21,7 +21,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header {
   height: 43px;
@@ -43,5 +42,4 @@ header img {
 .header-appear-active {
   transition: all 2s ease;
 }
-
 </style>

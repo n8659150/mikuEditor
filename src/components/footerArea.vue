@@ -14,21 +14,20 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .footerWrap {
-  border-top: 5px solid rgba(29,29,31,0.07);
-  display:flex;
+  border-top: 5px solid rgba(29, 29, 31, 0.07);
+  display: flex;
   justify-content: center;
 }
 
-  footer {
-    /* border:1px solid red; */
-    display:flex;
-    width:243px;
-    height:27px;
-    line-height:27px;
-    align-items: center;
-    justify-content: space-between;
-  }
+footer {
+  /* border:1px solid red; */
+  display: flex;
+  width: 243px;
+  height: 27px;
+  line-height: 27px;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>

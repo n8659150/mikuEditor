@@ -6,33 +6,10 @@
     <at-menu mode="vertical"  :active-name="activeName" width="150">
       
       <at-menu-item v-for="(menuItem,index) in menuItems" :key="index" :name="menuItem" @click.native="activeMenu(index)">{{menuItem}}</at-menu-item>
-      <!-- <at-menu-item name="CSS">CSS</at-menu-item>
-      <at-menu-item name="JavaScript">JavaScript</at-menu-item> -->
     </at-menu>
   </div>
   </transition>
-    <!-- <div id="html">
-      <h3>HTML</h3>
-      <textarea name="html"></textarea>
-    </div> -->
-    <!-- <div id="css">
-      <h3>CSS</h3>
-      <textarea name="css"></textarea>
-    </div> -->
-    <!-- <div id="js">
-      <h3>JavaScript</h3>
-      <textarea name="js"></textarea>
-    </div> -->
-
-    <!-- <div class="codingArea">
-      <h3>HTML</h3>
-      <codemirror :options='settings.HTML.cmOptions' v-model="settings.HTML.htmlInput"></codemirror>
-    </div> -->
-    <!-- <div>
-      <h3>CSS</h3>
-      <codemirror :options='settings.CSS.cmOptions' v-model="settings.CSS.cssInput"></codemirror>
-    </div>
-     -->
+    
     <transition appear appear-active-class="animated bounceInDown animation-delay-1600">
       <div class="codingArea" style="position:relative;">
         <codemirror v-if="activeName == 'HTML'" :options='settings.HTML.cmOptions' v-model="settings.HTML.htmlInput"></codemirror>
@@ -42,14 +19,9 @@
       </div>
     </transition>
   <!-- Sandboxing -->
-  
     <div id="output">
-      <!-- <transition appear appear-active-class="animated bounceInDown animation-delay-1700" > -->
         <iframe class="outputArea" allowTransparency="true"></iframe>
-      <!-- </transition> -->
     </div>
-    
-    <!-- <button @click="renderIt()">Run</button> -->
   </div>
 </template>
 
@@ -58,9 +30,46 @@ import { codemirror } from "vue-codemirror";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/mode/css/css.js";
 import "codemirror/mode/javascript/javascript.js";
+// addons
+
+// hint
+import "codemirror/addon/hint/show-hint.js";
+import "codemirror/addon/hint/show-hint.css";
+import "codemirror/addon/hint/html-hint.js";
+import "codemirror/addon/hint/css-hint.js";
+import "codemirror/addon/hint/javascript-hint.js";
+// auto-close
+import "codemirror/addon/edit/closetag.js";
+import "codemirror/addon/edit/closebrackets.js";
+import "codemirror/addon/edit/matchbrackets.js";
+import "codemirror/addon/edit/matchtags.js";
+// display
+import "codemirror/addon/display/rulers.js";
+// search
+import "codemirror/addon/search/searchcursor.js";
+import "codemirror/addon/search/search.js";
+import "codemirror/addon/search/jump-to-line.js";
+import "codemirror/addon/search/match-highlighter.js";
+
+// keyMap
+import "codemirror/mode/clike/clike.js";
+import "codemirror/addon/comment/comment.js";
+import "codemirror/addon/dialog/dialog.js";
+import "codemirror/addon/dialog/dialog.css";
+import "codemirror/keymap/sublime.js";
+// gutters
+import "codemirror/addon/fold/foldgutter.css";
+import "codemirror/addon/fold/brace-fold.js";
+import "codemirror/addon/fold/comment-fold.js";
+import "codemirror/addon/fold/foldcode.js";
+import "codemirror/addon/fold/foldgutter.js";
+import "codemirror/addon/fold/indent-fold.js";
+import "codemirror/addon/fold/markdown-fold.js";
+import "codemirror/addon/fold/xml-fold.js";
+// END addons
 import "../styles/miku_theme.css";
-import { Menu as AtMenu } from 'at-ui';
-import { MenuItem as AtMenuItem } from 'at-ui';
+import { Menu as AtMenu } from "at-ui";
+import { MenuItem as AtMenuItem } from "at-ui";
 //  require('codemirror/addon/fold/foldcode.js')
 //  require('codemirror/addon/fold/foldgutter.js')
 //  require('codemirror/addon/fold/brace-fold.js')
@@ -69,68 +78,97 @@ import { MenuItem as AtMenuItem } from 'at-ui';
 //  require('codemirror/addon/fold/markdown-fold.js')
 //  require('codemirror/addon/fold/comment-fold.js')
 export default {
-  name: 'mainArea',
-  data () {
+  name: "mainArea",
+  data() {
     return {
-      activeName:'HTML',
-      menuItems:['HTML','CSS','JavaScript'],
-      settings:{
-        HTML:{
-          htmlInput:"<!doctype html>\n" +
+      activeName: "HTML",
+      menuItems: ["HTML", "CSS", "JavaScript"],
+      settings: {
+        HTML: {
+          htmlInput:
+            "<!doctype html>\n" +
             "<html>\n\t" +
             "<head>\n\t\t" +
-            "<meta charset=\"utf-8\">\n\t\t" +
-            "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css\">\n\t" +
+            '<meta charset="utf-8">\n\t\t' +
+            '<link rel="stylesheet"\n\t\t'  +
+            'href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">\n\t' +
             "<title>JS_Online</title>\n\t" +
             "</head>\n\t" +
-            "<body class=\"animated bounceInDown\">\n\t" +
+            '<body class="animated bounceInDown">\n\t' +
             "\t<div>miku</div>\n\t" +
-            "</body>\n" + 
+            "</body>\n" +
             "</html>",
           cmOptions: {
             tabSize: 4,
             styleActiveLine: true,
             lineNumbers: true,
             line: true,
-            mode: 'htmlmixed',
+            mode: "htmlmixed",
             lineWrapping: true,
-            theme: 'miku'
+            theme: "miku",
+            hintOptions: {
+              completeSingle: true
+            },
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            keyMap: "sublime",
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            extraKeys: { Ctrl: "autocomplete" }
           }
         },
-        CSS:{
-          cssInput: 'div { width:300px; height:316px; background:url("../static/miku_100.jpg")}',
+        CSS: {
+          cssInput:
+            'div { width:300px; height:316px; background:url("./static/miku_100.jpg")}',
           cmOptions: {
-          tabSize: 4,
-          styleActiveLine: true,
-          lineNumbers: true,
-          line: true,
-          mode: 'css',
-          lineWrapping: true,
-          theme: 'miku'
+            tabSize: 4,
+            styleActiveLine: true,
+            lineNumbers: true,
+            line: true,
+            mode: "css",
+            lineWrapping: true,
+            theme: "miku",
+            hintOptions: {
+              completeSingle: true
+            },
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            keyMap: "sublime",
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            extraKeys: { Ctrl: "autocomplete" }
           }
         },
-        JS:{
-          jsInput: 'let a = 10;',
+        JS: {
+          jsInput: "let a = 10;",
           cmOptions: {
-          tabSize: 4,
-          styleActiveLine: true,
-          lineNumbers: true,
-          line: true,
-          mode: 'javascript',
-          lineWrapping: true,
-          // viewportMargin: Infinity,
-          theme: 'miku'
+            tabSize: 4,
+            styleActiveLine: true,
+            lineNumbers: true,
+            line: true,
+            mode: "javascript",
+            lineWrapping: true,
+            theme: "miku",
+            hintOptions: {
+              completeSingle: true
+            },
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            keyMap: "sublime",
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            extraKeys: { Ctrl: "autocomplete" }
           }
         }
       }
-    }
+    };
   },
-  components:{codemirror,AtMenu,AtMenuItem},
+  components: { codemirror, AtMenu, AtMenuItem },
   methods: {
-   activeMenu:function(index){
-     this.activeName = this.menuItems[index];
-   }, 
-   sourceCode:function(){
+    activeMenu: function(index) {
+      this.activeName = this.menuItems[index];
+    },
+    sourceCode: function() {
       // var base_tpl = "<!doctype html>\n" +
       //       "<html>\n\t" +
       //       "<head>\n\t\t" +
@@ -138,76 +176,76 @@ export default {
       //       "<title>JS_Online</title>\n\t" +
       //       "</head>\n\t" +
       //       "<body>\n\t\n\t" +
-      //       "</body>\n" + 
+      //       "</body>\n" +
       //       "</html>";
       var html = this.settings.HTML.htmlInput,
-              css = this.settings.CSS.cssInput,
-              js = this.settings.JS.jsInput,
-              src = '';
-          console.log(html);
-          console.log(css);
-          console.log(js);
-          // HTML
-          src = html;
-          // src = html;
-          // CSS
-          css = '<style>' + css + '</style> \n';
-          src = src.replace('</head>', css + '</head>' );
-          
-          // Javascript
-          js = '<script>' + js + '<\/script>';
-          src = src.replace('</body>', '</body> \n\t' + js);
-          console.log(src);
-          return src;
-   },
-   renderIt:function(){
-       let source = this.sourceCode();
-       let iframe = document.querySelector('#output iframe'),
-       iframe_doc = iframe.contentDocument;
-       iframe_doc.open();
-       iframe_doc.write(source);
-       iframe_doc.close();
-     }
+        css = this.settings.CSS.cssInput,
+        js = this.settings.JS.jsInput,
+        src = "";
+      console.log(html);
+      console.log(css);
+      console.log(js);
+      // HTML
+      src = html;
+      // src = html;
+      // CSS
+      css = "<style>" + css + "</style> \n";
+      src = src.replace("</head>", css + "</head>");
+
+      // Javascript
+      js = "<script>" + js + "<\/script>";
+      src = src.replace("</body>", "</body> \n\t" + js);
+      console.log(src);
+      return src;
+    },
+    renderIt: function() {
+      let source = this.sourceCode();
+      let iframe = document.querySelector("#output iframe"),
+        iframe_doc = iframe.contentDocument;
+      iframe_doc.open();
+      iframe_doc.write(source);
+      iframe_doc.close();
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main {
-  flex:1;
+  flex: 1;
   display: flex;
   flex-direction: row;
-  margin:14px 0 0 0;
+  margin: 14px 0 0 0;
 }
 .menu {
-  border-right:1px solid #e2ecf4;
+  border-right: 1px solid #e2ecf4;
 }
 
 .at-menu--vertical .at-menu__item-link::after {
-  content: '';
+  content: "";
   display: inline-block;
   position: absolute;
   top: 0;
   left: 0;
   width: 6px;
   height: 100%;
-  background-color: #39C5BB !important;
+  background-color: #39c5bb !important;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  -webkit-box-shadow: 1px 0 12px 0 #39C5BB !important;
-          box-shadow: 1px 0 12px 0 #39C5BB !important;
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
+  -webkit-box-shadow: 1px 0 12px 0 #39c5bb !important;
+  box-shadow: 1px 0 12px 0 #39c5bb !important;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
   opacity: 0;
 }
 
 .at-menu--vertical .at-menu__item-link:hover {
-  color: #6190E8;
+  color: #6190e8;
 }
 
 .at-menu--vertical .at-menu__item-link.router-link-active {
-  color: #6190E8;
+  color: #6190e8;
   background-color: rgba(236, 242, 252, 0.2);
 }
 
@@ -260,5 +298,4 @@ a {
   color: #42b983;
 } */
 /* fade 效果*/
-
 </style>
